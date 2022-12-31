@@ -12,7 +12,7 @@ def index():
 def register():
     if request.method == "POST":
 # sqlite
-        connection = sqlite3.connect("C:\\Users\\saima\\Desktop\\Finalproject\\app_data.db")
+        connection = sqlite3.connect("app_data.db")
         cursor = connection.cursor()
 
 #Html form
@@ -34,7 +34,7 @@ def register():
 def login():
     if request.method == "POST":
 # sqlite
-        connection = sqlite3.connect("C:\\Users\\saima\\Desktop\\Finalproject\\app_data.db")
+        connection = sqlite3.connect("app_data.db")
         cursor = connection.cursor()
 
 #Html form
@@ -59,3 +59,7 @@ def login():
 @app.route('/home')
 def home():
     return render_template('home.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
