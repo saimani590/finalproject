@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head> 
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        <link rel="stylesheet" href="{{url_for('static',filename='css/register.css')}}">
-
-		<title>Register</title>
-	</head>
-	<body>   
-      <div><br>
-          <h1>REGISTER FORM</h1>
-          <br>
-          <form name="f1" action="" method="POST">
-          <input type="text" placeholder="Enter name" name="name" required>
-          <br><br>
-          <input type="text" placeholder="Enter username" name="username" required>
-          <br><br>
-          <input type="text" placeholder="Enter email" name="email" required>
-          <br><br>
-          <input type="password" placeholder="Enter password" name="password" required>
-          <br><br>
-          <input type="password" placeholder="confirmpassword" name="confirmpassword" required>
-          <br><br>
-          <button>Submit</button>
-          </form>
-      </div>
-	</body>
+<head>
+    <title>Register</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/css1.css')}}">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form action=""  method="POST">
+        <h3>Register Here</h3>
+        <input type="text" placeholder="Name" id="username" name="name">
+        <input type="text" placeholder="Username" id="username" name="username">
+        <input type="gmail" placeholder="Email" id="password" name="email">
+        <input type="password" placeholder="Password" id="password" name="password">
+        <input type="password" placeholder="ConfirmPassword" id="password" name="confirmpassword">
+        <button>Register</button>
+        <p>Already have an account?<a href="">Login</a></p>
+    </form>
+</body>
+</html>
+  
+</body>
 </html>
