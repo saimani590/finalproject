@@ -23,10 +23,16 @@ def register():
         confirmpassword=request.form['confirmpassword']
         data=[name,username,email,password,confirmpassword]
         #print(name,username,email,password,confirmpassword)
-        query="INSERT INTO registerdata(name,username,email,password,confirmpassword) VALUES (?,?,?,?,?)"
-        cursor.execute(query,data)
-        connection.commit()
-        return redirect('/login')
+
+ # password validation
+
+        if(password == confirmpassword):
+                query="INSERT INTO registerdata(name,username,email,password,confirmpassword) VALUES (?,?,?,?,?)"
+                cursor.execute(query,data)
+                connection.commit()
+                return redirect('/login')
+        else:
+            return "password not matched"
     return render_template('register.html')
 
 # --------------------------------loginpage---------------------------
