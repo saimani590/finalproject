@@ -22,19 +22,20 @@
                     <div class="form-group">
                        <i class="fa fa-user icon"></i>
                         <input type="text"  placeholder="Username *" name="username" required>
-                     </div><br/>
+                     </div>
+                     <p id="mess">{{message}}</p><br/>
                      <div class="form-group">
                         <i class="fa fa-envelope icon"></i>
                         <input type="email"  placeholder="Email *" pattern="[a-z0-9._%+-]+@gmail.com" title="enter valid mail id" name="email" required>
                      </div><br/>
                      <div class="form-group">
                        <i class="fa fa-lock icon"></i>
-                        <input type="password"  placeholder="Password *" id="psw"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" title="Must contain at least one number and one uppercase and lowercase letter and  one Symbol, and at least 8 or more characters" name="password" required>
+                        <input type="password"  placeholder="Password *" id="psw"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" title="Must contain atleast one number and one uppercase and lowercase letter and  one Symbol, and at least 8 or more characters" name="password" required>
                      </div>
                      <br/>
                      <div class="form-group">
                        <i class="fa fa-lock icon"></i>
-                        <input type="password"  placeholder="Confirm Password *" id="cpsw" onkeypress="pass()" name="confirmpassword" required >
+                        <input type="password"  placeholder="Confirm Password *" id="cpsw" onkeypress="pass()" name="confirmpassword"  required>
                      </div>
                      <p id="mess">Password not matched</p><br/>
                     <button class="btn btn-primary">Sign Up</button><br/>
@@ -47,7 +48,7 @@
                        var pw = document.getElementById("psw").value;
                      var cpw = document.getElementById("cpsw").value; 
                        if(pw == cpw) {  
-                           alert(pw+","+cpw); 
+                           alert("Register Success"); 
                        }  
                      else{
                      document.getElementById("mess").style.display="block"; 

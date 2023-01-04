@@ -10,6 +10,7 @@ def index():
 # --------------------------------registerpage---------------------------
 @app.route('/register',methods=['POST','GET'])
 def register():
+    message="user already existed"
     if request.method == "POST":
 # sqlite
         connection = sqlite3.connect("app_data.db")
@@ -23,16 +24,17 @@ def register():
         confirmpassword=request.form['confirmpassword']
         data=[name,username,email,password,confirmpassword]
         #print(name,username,email,password,confirmpassword)
+        query1="SELECT username FROM registerdata WHERE username='"+username+"'"
+        cursor.execute(query1)
 
- # password validation
-
-        if(password == confirmpassword):
-                query="INSERT INTO registerdata(name,username,email,password,confirmpassword) VALUES (?,?,?,?,?)"
-                cursor.execute(query,data)
-                connection.commit()
-                return redirect('/login')
+        results = cursor.fetchall()
+        if len(results) != 0:
+            return (message)
         else:
-            return "password not matched"
+            query="INSERT INTO registerdata(name,username,email,password,confirmpassword) VALUES (?,?,?,?,?)"
+            cursor.execute(query,data)
+            connection.commit()
+            return redirect('/login')
     return render_template('register.html')
 
 # --------------------------------loginpage---------------------------
