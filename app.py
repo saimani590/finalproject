@@ -1,7 +1,7 @@
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect,session,url_for
 import sqlite3
 app = Flask(__name__)
-
+app.secret_key = "590"
 # --------------------------------indexpage---------------------------
 @app.route('/')
 def index():
@@ -10,7 +10,6 @@ def index():
 # --------------------------------registerpage---------------------------
 @app.route('/register',methods=['POST','GET'])
 def register():
-    message="user already existed"
     if request.method == "POST":
 # sqlite
         connection = sqlite3.connect("app_data.db")
@@ -29,7 +28,7 @@ def register():
 
         results = cursor.fetchall()
         if len(results) != 0:
-            return (message)
+            return ("user already existed")
         else:
             query="INSERT INTO registerdata(name,username,email,password,confirmpassword) VALUES (?,?,?,?,?)"
             cursor.execute(query,data)
