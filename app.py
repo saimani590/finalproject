@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,session,url_for
+from flask import Flask,render_template,request,redirect,session,url_for,flash
 import sqlite3
 app = Flask(__name__)
 app.secret_key = "590"
@@ -11,6 +11,7 @@ def index():
 @app.route('/register',methods=['POST','GET'])
 def register():
     if request.method == "POST":
+        message="user already existed"
 # sqlite
         connection = sqlite3.connect("app_data.db")
         cursor = connection.cursor()
@@ -23,13 +24,19 @@ def register():
         confirmpassword=request.form['confirmpassword']
         data=[name,username,email,password,confirmpassword]
         #print(name,username,email,password,confirmpassword)
+
+#login authentications
+
         query1="SELECT username FROM registerdata WHERE username='"+username+"'"
         cursor.execute(query1)
-
         results = cursor.fetchall()
         if len(results) != 0:
-            return ("user already existed")
+            return "<html><body><h1>{message}</h1></body></html>"
+            # flash("This is a flashed message.")
         else:
+
+#register data insert
+
             query="INSERT INTO registerdata(name,username,email,password,confirmpassword) VALUES (?,?,?,?,?)"
             cursor.execute(query,data)
             connection.commit()
@@ -60,8 +67,6 @@ def login():
         else:
              session['user'] = username
              return redirect(url_for("home"))
-            # return redirect("/home")
-
     else:
         if "user" in session:
             return redirect(url_for("home"))
@@ -76,9 +81,11 @@ def home():
     else:
       return redirect(url_for("login"))
 
+# --------------------------------logoutpage---------------------------
 @app.route('/logout')
 def logout():
     session.pop("user",None)
-    return redirect(url_for("login"))
+    return redirect(url_for("index"))
+
 if __name__ == '__main__':
     app.run(debug=True)
