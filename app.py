@@ -54,20 +54,31 @@ def login():
         cursor.execute(query)
 
         results = cursor.fetchall()
-
 #validation
         if len(results) == 0:
             return "userid and password is incorrect"
         else:
-            return redirect("/home")
-    return render_template('login.html')
+             session['user'] = username
+             return redirect(url_for("home"))
+            # return redirect("/home")
+
+    else:
+        if "user" in session:
+            return redirect(url_for("home"))
+        return render_template('login.html')
 
 # --------------------------------homepage---------------------------
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    if 'user' in session:
+        user = session['user']
+        return render_template('home.html')
+    else:
+      return redirect(url_for("login"))
 
-
-
+@app.route('/logout')
+def logout():
+    session.pop("user",None)
+    return redirect(url_for("login"))
 if __name__ == '__main__':
     app.run(debug=True)
