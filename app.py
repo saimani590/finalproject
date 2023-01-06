@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,session,url_for,flash
+from flask import Flask,render_template,request,redirect,session,url_for
 import sqlite3
 app = Flask(__name__)
 app.secret_key = "590"
@@ -11,7 +11,6 @@ def index():
 @app.route('/register',methods=['POST','GET'])
 def register():
     if request.method == "POST":
-        message="user already existed"
 # sqlite
         connection = sqlite3.connect("app_data.db")
         cursor = connection.cursor()
@@ -31,8 +30,7 @@ def register():
         cursor.execute(query1)
         results = cursor.fetchall()
         if len(results) != 0:
-            return "<html><body><h1>{message}</h1></body></html>"
-            # flash("This is a flashed message.")
+            return "user already exists"
         else:
 
 #register data insert
@@ -87,5 +85,10 @@ def logout():
     session.pop("user",None)
     return redirect(url_for("index"))
 
+# @app.route('/alert')
+# def alert():
+#     # return "<html><head><script>alert('register successfully')</script></head></html>"
+#     return redirect(url_for("register"))
+#     # return render_template('alertmessage.html')
 if __name__ == '__main__':
     app.run(debug=True)
