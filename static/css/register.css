@@ -43,3 +43,8 @@ h1{
     color: red;
     display: none;
 }
+.already{
+    margin:10px 0px 0px 120px;
+    color: red;
+    /* display: none; */
+}

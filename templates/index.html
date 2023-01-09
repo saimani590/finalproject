@@ -11,6 +11,15 @@
 </head>
 
 <body>
+    <!-- {% with messages = get_flashed_messages() %}
+           {% if messages %}
+           {% for msg in messages %}
+          <div class="flash">
+                <h3>{{msg}}<span class="close">&times;</span></h3>
+             </div>
+           {% endfor %}
+           {% endif %}
+      {% endwith %} -->
         <div class="titleback">
             <div class="list">
                 <ul>
@@ -94,5 +103,13 @@
     </div>
     </div>
 </body>
-
+<!-- <script>
+    var closebtns = document.getElementsByClassName("close");
+    var i;
+    for(i=0;i<closebtns.length;i++){
+        closebtns[i].addEventListener("click",function(){
+            this.parentElement.style.display = 'none';
+        });
+    }
+</script> -->
 </html>

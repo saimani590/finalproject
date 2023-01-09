@@ -98,3 +98,23 @@ h2{
 /*            text-align: center;*/
     font-size: 30px;
 }
+.already{
+    margin:10px 0px 0px 120px;
+    color: red;
+    /* display: none; */
+}
+/* .close{
+    cursor: pointer;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    padding: 0px 16px;
+    transform: translate(0%,-50%);
+}
+.close:hover{
+    background: #bbb;
+}
+.flash{
+    margin: 0px 20px 0px 20px;
+    background-color: aqua;
+} */

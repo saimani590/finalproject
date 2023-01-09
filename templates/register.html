@@ -23,6 +23,13 @@
                        <i class="fa fa-user icon"></i>
                         <input type="text"  placeholder="Username *" name="username" required>
                      </div>
+                           {% with messages = get_flashed_messages() %}
+           {% if messages %}
+           {% for msg in messages %}
+           <p class="already">{{msg}}</p>
+           {% endfor %}
+           {% endif %}
+      {% endwith %}
                     <br/>
                      <div class="form-group">
                         <i class="fa fa-envelope icon"></i>

@@ -1,11 +1,11 @@
-from flask import Flask,render_template,request,redirect,session,url_for
+from flask import Flask,render_template,request,redirect,session,url_for,flash
 import sqlite3
 app = Flask(__name__)
 app.secret_key = "590"
 # --------------------------------indexpage---------------------------
 @app.route('/')
 def index():
-    return render_template('index.html')
+      return render_template('index.html')
 
 # --------------------------------registerpage---------------------------
 @app.route('/register',methods=['POST','GET'])
@@ -30,7 +30,8 @@ def register():
         cursor.execute(query1)
         results = cursor.fetchall()
         if len(results) != 0:
-            return "user already exists"
+            # return "user already exists"
+             flash("user already exists",'warning')
         else:
 
 #register data insert
@@ -38,6 +39,7 @@ def register():
             query="INSERT INTO registerdata(name,username,email,password,confirmpassword) VALUES (?,?,?,?,?)"
             cursor.execute(query,data)
             connection.commit()
+            # flash("register success",'info')
             return redirect('/login')
     return render_template('register.html')
 
@@ -61,6 +63,7 @@ def login():
         results = cursor.fetchall()
 #validation
         if len(results) == 0:
+            # flash("userid and password is incorrect",'warning')
             return "userid and password is incorrect"
         else:
              session['user'] = username
